@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#eaf0ed">
+  <meta name="description" content="เวิร์กสเปซภาษาไทยสำหรับเตรียมชื่อเพลง สไตล์ และเนื้อร้องไปใช้ใน Suno">
+  <title>DNA SONG AI | สตูดิโอพรอมต์ Suno</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%23e7f2ec'/%3E%3Cpath d='M4 10v4m4-7v10m4-14v18m4-14v10m4-7v4' fill='none' stroke='%2316634c' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./studio.css">
+  <meta name="library-api" content="port/8932">
+  <script src="./language.js" defer></script>
+  <script src="./genres.js" defer></script>
+  <script src="./brief-options.js" defer></script>
+  <script src="./audio.js" defer></script>
+  <script src="./studio.js" defer></script>
+  <script src="./workspace.js" defer></script>
+</head>
+<body>
+  <svg class="symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="wave" viewBox="0 0 24 24"><path d="M3 10v4m4-7v10m5-14v18m5-14v10m4-7v4"/></symbol>
+    <symbol id="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></symbol>
+    <symbol id="sliders" viewBox="0 0 24 24"><path d="M5 3v7m0 4v7m7-18v12m0 4v2m7-18v3m0 4v11M2 10h6m1 5h6m1-9h6"/></symbol>
+    <symbol id="file" viewBox="0 0 24 24"><path d="M13 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9Zm0 0v6h6M8 13h8m-8 4h6"/></symbol>
+    <symbol id="copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></symbol>
+    <symbol id="mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M6 11v1a6 6 0 0 0 12 0v-1m-6 7v3m-3 0h6"/></symbol>
+    <symbol id="music" viewBox="0 0 24 24"><path d="M9 18V5l11-2v13M9 8l11-2"/><ellipse cx="6" cy="18" rx="3" ry="2"/><ellipse cx="17" cy="16" rx="3" ry="2"/></symbol>
+    <symbol id="reset" viewBox="0 0 24 24"><path d="M4 10a8 8 0 1 1 1 7m-1-7V4m0 6h6"/></symbol>
+    <symbol id="spark" viewBox="0 0 24 24"><path d="m12 3 2.4 6.6L21 12l-6.6 2.4L12 21l-2.4-6.6L3 12l6.6-2.4L12 3Z"/></symbol>
+    <symbol id="chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="save" viewBox="0 0 24 24"><path d="M6 4h12v17l-6-4-6 4z"/></symbol>
+    <symbol id="upload" viewBox="0 0 24 24"><path d="M12 16V4m-4 4 4-4 4 4M4 15v5h16v-5"/></symbol>
+  </svg>
+  <header class="topbar">
+    <div class="brand"><svg class="icon" aria-hidden="true"><use href="#wave"/></svg><div class="brand-text"><span>DNA SONG AI</span><span class="brand-shop" lang="th">ร้านชำพี่หนึ่ง</span></div></div>
+    <div class="top-actions">
+      <div class="language-switch" role="group" data-a11y="uiLanguage"><button type="button" data-lang="th" lang="th" aria-pressed="true">ไทย</button><button type="button" data-lang="en" lang="en" aria-pressed="false">EN</button></div>
+      <a class="button launch" href="https://suno.com/create" target="_blank" rel="noopener noreferrer"><span data-t="openSuno">เปิด Suno</span> <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
+    </div>
+  </header>
+  <main class="sheet">
+    <div class="wrap">
+      <div class="intro">
+        <div><h1 lang="th">ร้านชำพี่หนึ่ง</h1><p data-t="intro">ถอด DNA เพลง · แต่งเนื้อ · สร้างสไตล์สำหรับ Suno</p></div>
+        <span class="model"><span class="dot"></span> <span data-t="localBadge">โหมดเทมเพลต · ไม่ใช้เครดิต AI</span></span>
+      </div>
+      <nav class="view-nav" aria-label="พื้นที่ทำงาน" data-a11y="workspaces">
+        <button type="button" data-view="reference" aria-controls="reference"><svg class="icon" aria-hidden="true"><use href="#wave"/></svg><span data-t="dnaTab">ถอด DNA</span></button>
+        <button type="button" data-view="compose" aria-controls="compose" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#sliders"/></svg><span data-t="songTab">สั่งเพลง</span></button>
+        <button type="button" data-view="library" aria-controls="library"><svg class="icon" aria-hidden="true"><use href="#save"/></svg><span data-t="libraryTab">คลังเพลง</span></button>
+      </nav>
+      <section id="reference" class="workspace view" hidden aria-labelledby="ref-heading">
+        <form id="dna-form" class="panel">
+          <header class="panel-head"><div><h2 id="ref-heading" data-t="dnaHeading">ถอด DNA จากเพลงอ้างอิง</h2><p data-t="dnaIntro">เลือกไฟล์เสียง หรือจดสิ่งที่ได้ยินด้วยตัวเอง</p></div></header>
+          <div class="form-body">
+            <div class="field"><label for="ref-title" data-t="refTitle">ชื่อเพลง / แหล่งอ้างอิง</label><input id="ref-title" maxlength="140" data-ph="refTitlePh"></div>
+            <div class="field">
+              <label for="ref-file" data-t="audioLabel">ไฟล์เสียงอ้างอิง</label>
+              <div class="file-field">
+                <input id="ref-file" type="file" accept="audio/*,.mp3,.wav,.m4a,.ogg,.flac,.aac" aria-describedby="ref-file-help ref-file-name">
+                <span class="file-pick" aria-hidden="true"><svg class="icon"><use href="#upload"/></svg><span data-t="chooseFile">เลือกไฟล์</span></span>
+                <span class="file-name" id="ref-file-name"></span>
+              </div>
+              <p class="helper" id="ref-file-help" data-t="audioHelp">ไม่เกิน 25 MB ประมวลผลในเครื่อง ไม่อัปโหลดไฟล์</p>
+            </div>
+            <div class="grid">
+              <div class="field"><label for="ref-genre" data-t="genre">แนวเพลง</label><select id="ref-genre"></select></div>
+              <div class="field"><label for="ref-mood" data-t="mood">อารมณ์เพลง</label><select id="ref-mood"></select></div>
+              <div class="field"><label for="ref-bpm" data-t="tempo">ความเร็ว (BPM)</label><input id="ref-bpm" type="number" min="35" max="240" inputmode="numeric" data-ph="refBpmPh"></div>
+              <div class="field"><label for="ref-groove" data-t="groove">จังหวะ</label><select id="ref-groove"></select></div>
+              <div class="field"><label for="ref-voice" data-t="voice">เสียงร้อง</label><select id="ref-voice"></select></div>
+              <div class="field"><label for="ref-inst" data-t="instruments">เครื่องดนตรี</label><input id="ref-inst" maxlength="160" data-ph="instPh"></div>
+            </div>
+            <details class="adjust"><summary><span data-t="refDetails">โน้ตการเรียบเรียงและมิกซ์</span><svg class="icon" aria-hidden="true"><use href="#chevron"/></svg></summary>
+              <div class="details-body">
+                <div class="field"><label for="ref-arrange" data-t="arrangement">การเรียบเรียง</label><input id="ref-arrange" maxlength="280" data-ph="refArrangePh"></div>
+                <div class="field"><label for="ref-prod" data-t="production">ซาวด์และมิกซ์</label><input id="ref-prod" maxlength="280" data-ph="refProdPh"></div>
+              </div>
+            </details>
+            <button type="submit" class="generate" id="analyze"><svg class="icon" aria-hidden="true"><use href="#wave"/></svg><span data-t="analyze">ถอด DNA</span></button>
+            <p class="error" id="dna-error" role="alert" hidden></p>
+          </div>
+        </form>
+        <section class="panel" aria-labelledby="dna-report-heading">
+          <header class="panel-head"><div><h2 id="dna-report-heading" data-t="report">รายงาน Music DNA</h2><p id="dna-status" aria-live="polite"></p></div></header>
+          <div class="output">
+            <div id="dna-result" aria-live="polite"></div>
+            <button type="button" id="apply-dna" class="button" hidden><span data-t="applyDna">ใช้ DNA นี้สั่งเพลง</span><svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></button>
+          </div>
+        </section>
+      </section>
+      <section id="compose" class="view" aria-label="สั่งเพลง" data-a11y="songTab">
+      <div class="workspace">
+        <form id="brief" class="panel" aria-labelledby="brief-heading">
+          <header class="panel-head">
+            <div><h2 id="brief-heading"><svg class="icon" aria-hidden="true"><use href="#sliders"/></svg> <span data-t="brief">บรีฟเพลง</span></h2><p data-t="briefSub">เลือกโทนเสียงและรายละเอียดเพลง</p></div>
+            <div class="output-actions">
+              <button type="button" id="clear-brief" class="button quiet"><svg class="icon" aria-hidden="true"><use href="#reset"/></svg> <span data-t="reset">ล้างค่า</span></button>
+              <button type="submit" class="generate generate-top"><svg class="icon" aria-hidden="true"><use href="#spark"/></svg> <span data-t="generate">สร้างพรอมต์</span></button>
+            </div>
+          </header>
+          <div class="form-body">
+            <fieldset class="mode">
+              <legend data-t="mode">ประเภทเพลง</legend>
+              <div class="segments">
+                <label><input type="radio" name="mode" value="draft" checked><span><svg class="icon" aria-hidden="true"><use href="#mic"/></svg> <b data-t="draft">ร่างเนื้อร้อง</b></span></label>
+                <label><input type="radio" name="mode" value="own"><span><svg class="icon" aria-hidden="true"><use href="#file"/></svg> <b data-t="own">มีเนื้อแล้ว</b></span></label>
+                <label><input type="radio" name="mode" value="instrumental"><span><svg class="icon" aria-hidden="true"><use href="#music"/></svg> <b data-t="instrumental">บรรเลง</b></span></label>
+              </div>
+            </fieldset>
+            <div class="field">
+              <div class="idea-head">
+                <label for="idea"><span data-t="idea">ไอเดียเพลง</span> <span class="optional" data-t="optional">ไม่บังคับ</span></label>
+                <button type="button" id="random-idea" class="button" aria-controls="idea"><svg class="icon" aria-hidden="true"><use href="#spark"/></svg><span data-t="randomIdea">สุ่มไอเดีย</span></button>
+              </div>
+              <textarea id="idea" rows="2" maxlength="360" data-ph="ideaPh"></textarea>
+            </div>
+            <div class="field">
+              <details class="genre-picker" id="genre-picker">
+                <summary><span><strong data-t="genre">แนวเพลง</strong><span id="genre-summary"></span></span><svg class="icon" aria-hidden="true"><use href="#chevron"/></svg></summary>
+                <fieldset>
+                  <legend data-t="genreHint">เลือกได้สูงสุด 3 แนว ระบบเลือกแนวหลักให้</legend>
+                  <input type="search" id="genre-search" data-a11y="genreSearch" data-ph="genreSearchPh" autocomplete="off" maxlength="80" aria-controls="genre-options">
+                  <p id="genre-status" class="helper" role="status"></p>
+                  <div id="genre-options" class="genre-options"></div>
+                </fieldset>
+              </details>
+              <p class="helper" id="primary-genre" aria-live="polite"></p>
+            </div>
+            <div class="grid">
+              <div class="field"><label for="mood" data-t="mood">อารมณ์เพลง</label><select id="mood"></select></div>
+              <div class="field" id="voice-field"><label for="voice" data-t="voice">เสียงร้อง</label><select id="voice"></select></div>
+              <div class="field" id="lyric-lang-field"><label for="lyric-lang" data-t="lyricLanguage">ภาษาเนื้อร้อง</label><select id="lyric-lang"><option value="th" data-t="lyricThai">ไทย</option><option value="en" lang="en">English</option><option value="th-en" data-t="lyricMixed">ไทย+Eng</option></select></div>
+              <div class="field"><label for="length" data-t="length">ความยาวเป้าหมาย</label><select id="length"></select></div>
+              <div class="field"><label for="bpm" data-t="tempo">ความเร็ว (BPM)</label><input id="bpm" type="number" inputmode="numeric" min="35" max="240" step="1" required></div>
+            </div>
+            <div class="field" id="source-field" hidden>
+              <label for="source" data-t="source">เนื้อร้องของคุณ</label>
+              <textarea id="source" rows="5" data-ph="sourcePh"></textarea>
+              <label class="check"><input type="checkbox" id="add-tags" checked> <span data-t="addTags">ใส่แท็กท่อนเมื่อยังไม่มี</span></label>
+              <p id="source-error" class="error" role="alert" hidden></p>
+            </div>
+            <details class="adjust" id="adjust">
+              <summary><span data-t="advanced">ปรับรายละเอียดเพิ่มเติม</span><svg class="icon" aria-hidden="true"><use href="#chevron"/></svg></summary>
+              <div class="details-body">
+                <div class="field"><label for="title"><span data-t="setTitle">ชื่อเพลงที่ต้องการ</span> <span class="optional" data-t="optional">ไม่บังคับ</span></label><input id="title" maxlength="80" data-ph="titlePh"></div>
+                <div class="field" id="hook-field"><label for="hook"><span data-t="hook">ประโยคฮุก</span> <span class="optional" data-t="optional">ไม่บังคับ</span></label><input id="hook" maxlength="70" data-ph="hookPh"></div>
+                <fieldset class="choice-group" aria-describedby="instrument-help">
+                  <legend data-t="instruments">เครื่องดนตรี</legend>
+                  <p class="helper" id="instrument-help" data-t="instrumentHelp">เลือกได้หลายข้อ ถ้าไม่เลือกจะใช้เครื่องดนตรีตามแนวเพลง</p>
+                  <div id="instruments" class="choice-grid"></div>
+                </fieldset>
+                <fieldset class="choice-group" aria-describedby="exclude-help">
+                  <legend data-t="excludeSub">สิ่งที่ไม่อยากได้</legend>
+                  <p class="helper" id="exclude-help" data-t="excludeHelp">เลือกได้หลายข้อ ถ้าไม่เลือกจะใช้ค่าแนะนำตามแนวเพลง</p>
+                  <div id="exclusions" class="choice-grid"></div>
+                </fieldset>
+              </div>
+            </details>
+            <button type="submit" class="generate generate-bottom"><svg class="icon" aria-hidden="true"><use href="#spark"/></svg> <span data-t="generate">สร้างพรอมต์</span></button>
+            <p class="privacy" data-t="privacy">สร้างจากเทมเพลตในเบราว์เซอร์ ไม่เรียก Claude หรือ Suno</p>
+          </div>
+        </form>
+        <section class="panel results" id="results" aria-labelledby="result-heading">
+          <header class="panel-head">
+            <div><h2 id="result-heading"><svg class="icon" aria-hidden="true"><use href="#file"/></svg> <span data-t="result">พรอมต์พร้อมใช้</span></h2><p id="result-status" aria-live="polite"></p></div>
+            <div class="output-actions">
+              <button class="button" type="button" id="save-song"><svg class="icon" aria-hidden="true"><use href="#save"/></svg> <span data-t="save">เก็บในคลัง</span></button>
+              <button class="button" type="button" id="copy-all"><svg class="icon" aria-hidden="true"><use href="#copy"/></svg> <span data-t="copyAll">คัดลอกทั้งหมด</span></button>
+            </div>
+          </header>
+          <div id="output" class="output"></div>
+        </section>
+      </div>
+      </section>
+      <section id="library" class="view panel" aria-labelledby="library-heading" hidden>
+        <header class="panel-head"><div><h2 id="library-heading" data-t="libraryHeading">คลังเพลงที่เก็บไว้</h2><p id="library-intro" data-t="hostedLibraryIntro">เมื่อกดเก็บในคลัง แอปจะส่งเฉพาะข้อความพรอมต์ไปเก็บในคลังของเบราว์เซอร์นี้ ไม่ส่งไฟล์เสียง</p></div></header>
+        <div class="output">
+          <div class="field library-search"><label for="library-search" data-t="search">ค้นหาเพลง</label><input id="library-search" type="search" data-ph="searchPh"></div>
+          <p class="helper" id="library-status" aria-live="polite"></p>
+          <div id="library-list"></div>
+          <button class="button retry" id="retry-library" type="button" data-t="retry" hidden>ลองใหม่</button>
+          <button class="button retry" id="library-compose" type="button" data-t="songTab" hidden>สั่งเพลง</button>
+        </div>
+      </section>
+      <footer>
+        <span data-t="footer">DNA SONG AI เป็นเครื่องมืออิสระ ไม่ใช่ผลิตภัณฑ์ของ Suno</span>
+        <div class="suno-export" id="suno-export">
+          <button type="button" class="generate" id="copy-suno" aria-describedby="suno-copy-help" disabled><svg class="icon" aria-hidden="true"><use href="#copy"/></svg><span data-t="copySuno">บันทึกเพื่อไปวางที่ Suno</span></button>
+          <p id="suno-copy-help" class="helper" aria-live="polite"></p>
+        </div>
+      </footer>
+    </div>
+  </main>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <dialog id="copy-dialog" aria-labelledby="copy-title">
+    <form method="dialog">
+      <h2 id="copy-title" data-t="manualTitle">คัดลอกด้วยตนเอง</h2>
+      <p data-t="manualCopy">เลือกข้อความในช่องนี้แล้วกดคัดลอก</p>
+      <textarea id="manual-copy" readonly rows="9" data-a11y="manualText"></textarea>
+      <button class="button" value="close" data-t="close">ปิด</button>
+    </form>
+  </dialog>
+  <dialog id="delete-dialog" aria-labelledby="delete-title">
+    <form method="dialog">
+      <h2 id="delete-title" data-t="deleteTitle">ลบเพลงนี้จากคลัง?</h2>
+      <p id="delete-name"></p>
+      <div class="dialog-actions"><button class="button" value="cancel" data-t="cancel">ยกเลิก</button><button class="button danger" value="delete" data-t="remove">ลบ</button></div>
+    </form>
+  </dialog>
+  <noscript>เปิด JavaScript เพื่อใช้งาน / Enable JavaScript to use the studio.</noscript>
+<script data-pplx-inline-edit>
+(function () {
+  if (window === window.top) return;
+
+  const allowedParentOrigins = ["https://www.perplexity.ai","https://perplexity.ai","https://testing.perplexity.ai","https://staging.perplexity.ai","https://*.preview.i.perplexity.ai","http://perplexity.localhost","http://localhost:1420","http://127.0.0.1:1420","http://localhost:3000","http://127.0.0.1:3000","http://localhost:5173","http://127.0.0.1:5173"];
+  const MAX_FONT_BYTES = 500 * 1024;
+  const MAX_TOTAL_FONT_BYTES = 2 * 1024 * 1024;
+  const DEFAULT_LINE_HEIGHT = 16;
+  let scrollForwarding = false;
+  let scrollRaf = 0;
+  let trustedTopOrigin = null;
+
+  // Allow entries like "https://*.preview.i.perplexity.ai" — the wildcard
+  // matches a single DNS label (no dots), so "https://*.foo" cannot stretch
+  // across multiple labels.
+  function matchesAllowedOrigin(origin) {
+    if (!origin) return false;
+    for (const entry of allowedParentOrigins) {
+      if (!entry.includes("*")) {
+        if (entry === origin) return true;
+        continue;
+      }
+      const pattern = new RegExp(
+        "^" +
+          entry.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, "[^.]+") +
+          "$",
+      );
+      if (pattern.test(origin)) return true;
+    }
+    return false;
+  }
+
+  // Trust decision: when the sender is same-origin-visible (event.origin is a
+  // real origin like https://www.perplexity.ai) we trust event.origin directly.
+  // When event.origin is "null" (opaque broker srcdoc), we fall back to the
+  // broker's stamped `parentOrigin` to identify the top window. The fallback
+  // is claim-only — we rely on the browser's native `targetOrigin` enforcement
+  // on the response path (see postToTrustedTop) to ensure replies can't be
+  // delivered to anyone but the actual top window of that claimed origin.
+  function getTrustedParentOrigin(event) {
+    const forwardedParentOrigin =
+      typeof event.data.parentOrigin === "string" ? event.data.parentOrigin : null;
+    const parentOrigin = event.origin === "null" ? forwardedParentOrigin : event.origin;
+    return matchesAllowedOrigin(parentOrigin) ? parentOrigin : null;
+  }
+
+  // All responses go to window.top with targetOrigin = the allowlisted origin.
+  // An attacker that iframes us inside their own null-origin broker can claim
+  // any parentOrigin they like, but the browser will drop the reply whenever
+  // the real top's origin doesn't match — so the screenshot never leaves.
+  function postToTrustedTop(message) {
+    if (!trustedTopOrigin) return;
+    try {
+      window.top.postMessage(message, trustedTopOrigin);
+    } catch (_error) {}
+  }
+
+  const PICK_CAPABILITIES = ["pick"];
+  const PICK_CHAIN_LENGTH = 4;
+  const PICK_MAX_TEXT_CHARS = 120;
+  const PICK_MAX_HTML_CHARS = 300;
+
+  function truncate(value, maxChars) {
+    return value.length > maxChars ? value.slice(0, maxChars - 1) + "…" : value;
+  }
+
+  function isPickableElement(element) {
+    return (
+      element instanceof Element &&
+      element !== document.documentElement &&
+      element !== document.body
+    );
+  }
+
+  function resolvePickTarget(x, y) {
+    if (!Number.isFinite(x) || !Number.isFinite(y)) return null;
+    const element = document.elementFromPoint(x, y);
+    return isPickableElement(element) ? element.closest("svg") || element : null;
+  }
+
+  function pickLabel(element) {
+    if (element.id) return element.localName + "#" + element.id;
+    return [element.localName].concat(Array.from(element.classList).slice(0, 2)).join(".");
+  }
+
+  // Only attributes that help find the element in source. data-* values and URL
+  // query strings or fragments can carry tokens.
+  const PICK_ATTRIBUTES = new Set([
+    "id",
+    "class",
+    "name",
+    "type",
+    "role",
+    "alt",
+    "aria-label",
+    "href",
+    "src",
+  ]);
+
+  function pickAttributeValue(attribute) {
+    return attribute.name === "href" || attribute.name === "src"
+      ? attribute.value.split(/[?#]/)[0]
+      : attribute.value;
+  }
+
+  function describePickElement(element) {
+    const chain = [];
+    for (
+      let current = element;
+      isPickableElement(current) && chain.length < PICK_CHAIN_LENGTH;
+      current = current.parentElement
+    ) {
+      chain.unshift(current);
+    }
+    const attributes = Array.from(element.attributes)
+      .filter((attribute) => PICK_ATTRIBUTES.has(attribute.name))
+      .map((attribute) => ` ${attribute.name}="${pickAttributeValue(attribute).replace(/"/g, "&quot;")}"`)
+      .join("");
+    const text = (element.innerText || element.textContent || "").replace(/\s+/g, " ").trim();
+    return {
+      chain: chain.map(pickLabel),
+      html: truncate(`<${element.localName}${attributes}>`, PICK_MAX_HTML_CHARS),
+      text: text ? truncate(text, PICK_MAX_TEXT_CHARS) : undefined,
+    };
+  }
+
+  // Hover asks once per frame, and innerText on a large section forces layout,
+  // so only the rect is re-read while the pointer stays on the same element.
+  // Clicks ask for fresh details since the page may have changed the element.
+  let lastPick = null;
+
+  function describePickTarget(element, fresh) {
+    if (fresh || lastPick?.element !== element) {
+      lastPick = { element, details: describePickElement(element) };
+    }
+    const rect = element.getBoundingClientRect();
+    return {
+      rect: { x: rect.left, y: rect.top, width: rect.width, height: rect.height },
+      ...lastPick.details,
+    };
+  }
+
+  function inlineAll(original, clone) {
+    if (original.nodeType !== 1 || clone.nodeType !== 1) return;
+
+    try {
+      const computedStyle = getComputedStyle(original);
+      // cssText on a computed style is the serialized declaration in modern
+      // Chromium/Safari — a single read beats enumerating ~400 longhand
+      // properties. Firefox returns "" here, so we fall back on empty.
+      const serialized = computedStyle.cssText;
+      if (serialized) {
+        clone.style.cssText = serialized;
+      } else {
+        const parts = new Array(computedStyle.length);
+        for (let index = 0; index < computedStyle.length; index += 1) {
+          const property = computedStyle[index];
+          parts[index] = `${property}:${computedStyle.getPropertyValue(property)};`;
+        }
+        clone.style.cssText = parts.join("");
+      }
+    } catch (_error) {}
+
+    const originalChildren = original.children;
+    const clonedChildren = clone.children;
+    for (
+      let index = 0;
+      index < originalChildren.length && index < clonedChildren.length;
+      index += 1
+    ) {
+      inlineAll(originalChildren[index], clonedChildren[index]);
+    }
+  }
+
+  function extractFontUrl(srcValue) {
+    const matches = [
+      ...srcValue.matchAll(
+        /url\(["']?([^"')]+)["']?\)(?:\s*format\(["']?([^"')]+)["']?\))?/gi,
+      ),
+    ];
+    if (matches.length === 0) return null;
+    const woff2 = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff2"));
+    if (woff2) return woff2[1];
+    const woff = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff"));
+    if (woff) return woff[1];
+    return matches[0][1];
+  }
+
+  // Cache resolved font URL -> data URI across captures. Fonts on a page
+  // essentially never change, and a batch run emits multiple captures back to
+  // back — without this we'd refetch + re-base64 every time.
+  const fontDataUriCache = new Map();
+  const SRC_DECLARATION_RE = /src\s*:\s*[^;}]+/i;
+
+  async function fetchAsDataUri(url) {
+    if (fontDataUriCache.has(url)) return fontDataUriCache.get(url);
+    let dataUri = null;
+    try {
+      const response = await fetch(url, { mode: "cors", credentials: "omit" });
+      if (response.ok) {
+        const blob = await response.blob();
+        if (blob.size <= MAX_FONT_BYTES) {
+          dataUri = await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () =>
+              resolve(typeof reader.result === "string" ? reader.result : null);
+            reader.onerror = () => resolve(null);
+            reader.readAsDataURL(blob);
+          });
+        }
+      }
+    } catch (_error) {
+      dataUri = null;
+    }
+    fontDataUriCache.set(url, dataUri);
+    return dataUri;
+  }
+
+  function collectFontFaceRuleTexts() {
+    const rules = [];
+    for (const sheet of document.styleSheets) {
+      let cssRules;
+      try {
+        cssRules = sheet.cssRules;
+      } catch (_error) {
+        continue;
+      }
+      if (!cssRules) continue;
+      for (const rule of cssRules) {
+        const cssText = rule.cssText || "";
+        if (cssText.startsWith("@font-face")) rules.push(cssText);
+      }
+    }
+    return rules;
+  }
+
+  async function buildInlinedFontCss() {
+    const ruleTexts = collectFontFaceRuleTexts();
+    if (ruleTexts.length === 0) return null;
+
+    const resolved = ruleTexts.map((cssText) => {
+      if (!SRC_DECLARATION_RE.test(cssText)) return null;
+      const srcMatch = cssText.match(/src\s*:\s*([^;}]+)[;}]/i);
+      if (!srcMatch) return null;
+      const url = extractFontUrl(srcMatch[1]);
+      if (!url) return null;
+      try {
+        return { cssText, url: new URL(url, document.baseURI).href };
+      } catch (_error) {
+        return null;
+      }
+    });
+
+    const dataUris = await Promise.all(
+      resolved.map((entry) => (entry ? fetchAsDataUri(entry.url) : Promise.resolve(null))),
+    );
+
+    const inlined = [];
+    let totalBytes = 0;
+    for (let index = 0; index < resolved.length; index += 1) {
+      const entry = resolved[index];
+      const dataUri = dataUris[index];
+      if (!entry || !dataUri) continue;
+      const approxBytes = dataUri.length * 0.75;
+      if (totalBytes + approxBytes > MAX_TOTAL_FONT_BYTES) break;
+      totalBytes += approxBytes;
+      inlined.push(entry.cssText.replace(SRC_DECLARATION_RE, `src: url("${dataUri}")`));
+    }
+    return inlined.length > 0 ? inlined.join("\n") : null;
+  }
+
+  function stripExternal(clone) {
+    const images = clone.querySelectorAll("img");
+    for (let index = 0; index < images.length; index += 1) {
+      const src = images[index].getAttribute("src");
+      if (src && !src.startsWith("data:")) images[index].removeAttribute("src");
+    }
+
+    const elements = clone.querySelectorAll("*");
+    for (let index = 0; index < elements.length; index += 1) {
+      const style = elements[index].style.cssText;
+      if (style && style.includes("url(")) {
+        elements[index].style.cssText = style.replace(
+          /url\(["']?(?!data:)[^)"']*["']?\)/gi,
+          "none",
+        );
+      }
+    }
+  }
+
+  function emitScroll() {
+    scrollRaf = 0;
+    if (!scrollForwarding) return;
+    postToTrustedTop({
+      type: "INLINE_EDIT_SCROLL",
+      scrollX: window.scrollX,
+      scrollY: window.scrollY,
+      capabilities: PICK_CAPABILITIES,
+    });
+  }
+
+  window.addEventListener(
+    "scroll",
+    function () {
+      if (!scrollForwarding || scrollRaf) return;
+      scrollRaf = requestAnimationFrame(emitScroll);
+    },
+    { passive: true, capture: true },
+  );
+
+  async function handleCaptureRequest(event) {
+    const requestId = event.data.requestId;
+    const scrollX = window.scrollX;
+    const scrollY = window.scrollY;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    function postResult(dataUrl) {
+      postToTrustedTop({
+        type: "INLINE_EDIT_SCREENSHOT_RESULT",
+        requestId,
+        dataUrl,
+        scrollX,
+        scrollY,
+      });
+    }
+
+    try {
+      // Wait for any pending web fonts to resolve so both inline metrics and
+      // the @font-face inlining below see the same loaded faces.
+      if (document.fonts && document.fonts.ready) {
+        try {
+          await document.fonts.ready;
+        } catch (_error) {}
+      }
+
+      const clone = document.documentElement.cloneNode(true);
+      inlineAll(document.documentElement, clone);
+
+      const removedNodes = clone.querySelectorAll("script,link[rel=\"stylesheet\"],style");
+      for (let index = 0; index < removedNodes.length; index += 1) {
+        removedNodes[index].remove();
+      }
+
+      stripExternal(clone);
+
+      // Re-embed web fonts as data-URI @font-face rules so the SVG rasterizer
+      // can resolve them — external font URLs aren't fetched during
+      // foreignObject rendering, which would otherwise force a fallback face
+      // and change text metrics.
+      const inlinedFontCss = await buildInlinedFontCss();
+      if (inlinedFontCss) {
+        const styleEl = document.createElement("style");
+        styleEl.textContent = inlinedFontCss;
+        const head = clone.querySelector("head");
+        if (head) head.appendChild(styleEl);
+        else clone.insertBefore(styleEl, clone.firstChild);
+      }
+
+      const html = new XMLSerializer().serializeToString(clone);
+      const svg =
+        `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">` +
+        '<foreignObject width="100%" height="100%">' +
+        `<div xmlns="http://www.w3.org/1999/xhtml" style="width:${width}px;height:${height}px;overflow:hidden">` +
+        `<div style="position:relative;left:-${scrollX}px;top:-${scrollY}px">` +
+        html +
+        "</div></div></foreignObject></svg>";
+      const svgUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+      const image = new Image();
+      image.onload = function () {
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext("2d").drawImage(image, 0, 0);
+        postResult(canvas.toDataURL("image/png"));
+      };
+      image.onerror = function () {
+        postResult(null);
+      };
+      image.src = svgUrl;
+    } catch (_error) {
+      postResult(null);
+    }
+  }
+
+  window.addEventListener("message", function (event) {
+    if (!event.data) return;
+    // Only accept messages from the direct parent frame. Blocks sibling /
+    // unrelated-window postMessage senders that could otherwise reach us.
+    if (event.source !== window.parent) return;
+
+    const trustedParentOrigin = getTrustedParentOrigin(event);
+    if (!trustedParentOrigin) return;
+    trustedTopOrigin = trustedParentOrigin;
+
+    if (event.data.type === "INLINE_EDIT_PICK") {
+      const element = resolvePickTarget(event.data.x, event.data.y);
+      postToTrustedTop({
+        type: "INLINE_EDIT_PICK_RESULT",
+        seq: event.data.seq,
+        target: element ? describePickTarget(element, event.data.fresh === true) : null,
+      });
+      return;
+    }
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_START") {
+      scrollForwarding = true;
+      emitScroll();
+      return;
+    }
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_STOP") {
+      scrollForwarding = false;
+      if (scrollRaf) cancelAnimationFrame(scrollRaf);
+      scrollRaf = 0;
+      return;
+    }
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_BY") {
+      const { deltaX, deltaY, deltaMode } = event.data;
+      if (!scrollForwarding || !Number.isFinite(deltaX) || !Number.isFinite(deltaY)) return;
+      if (deltaMode !== 0 && deltaMode !== 1 && deltaMode !== 2) return;
+      const lineHeight =
+        parseFloat(getComputedStyle(document.documentElement).lineHeight) || DEFAULT_LINE_HEIGHT;
+      const scaleX = deltaMode === 1 ? lineHeight : deltaMode === 2 ? window.innerWidth : 1;
+      const scaleY = deltaMode === 1 ? lineHeight : deltaMode === 2 ? window.innerHeight : 1;
+      // The selection overlay receives the wheel event instead of this iframe.
+      // Instant scrolling preserves trackpad deltas even on smooth-scroll sites.
+      window.scrollBy({ left: deltaX * scaleX, top: deltaY * scaleY, behavior: "instant" });
+      emitScroll();
+      return;
+    }
+
+    if (event.data.type !== "INLINE_EDIT_CAPTURE_REQUEST") return;
+
+    handleCaptureRequest(event);
+  });
+})();
+
+
+</script></body>
+</html>
