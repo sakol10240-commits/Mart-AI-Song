@@ -1,7 +1,11 @@
 'use strict';
 
 const strings = {
-  openSuno:['เปิด Suno','Open Suno'], uiLanguage:['ภาษาของหน้าจอ','Interface language'], workspaces:['พื้นที่ทำงาน','Workspace'],
+  openSuno:['เปิด Suno','Open Suno'], installApp:['ติดตั้งลงหน้าจอ','Install app'], installTitle:['ติดตั้ง DNA SONG AI','Install DNA SONG AI'],
+  installIOSHelp:['แตะปุ่มแชร์ใน Safari แล้วเลือก “เพิ่มไปยังหน้าจอโฮม”','In Safari, tap Share, then choose “Add to Home Screen”.'],
+  installAndroidHelp:['เปิดเมนู ⋮ ของเบราว์เซอร์ แล้วเลือก “ติดตั้งแอป” หรือ “เพิ่มลงในหน้าจอหลัก”','Open your browser menu and choose “Install app” or “Add to Home screen”.'],
+  installDesktopHelp:['เปิดเมนูของเบราว์เซอร์ แล้วเลือก “ติดตั้ง DNA SONG AI” หรือ “Install app”','Open your browser menu and choose “Install DNA SONG AI” or “Install app”.'],
+  uiLanguage:['ภาษาของหน้าจอ','Interface language'], workspaces:['พื้นที่ทำงาน','Workspace'],
   intro:['ถอด DNA เพลง · แต่งเนื้อ · สร้างสไตล์สำหรับ Suno','Analyze a reference · Draft lyrics · Build a Suno style'],
   localBadge:['โหมดเทมเพลต · ไม่ใช้เครดิต AI','Template mode · No AI credits'],
   dnaTab:['ถอด DNA','Music DNA'], songTab:['สั่งเพลง','Build a song'], libraryTab:['คลังเพลง','Library'],

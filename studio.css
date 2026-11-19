@@ -37,6 +37,8 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .button {display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:36px;padding:5px 10px;border:1px solid var(--control);border-radius:var(--radius);background:var(--white);color:var(--ink);text-decoration:none;font-weight:500;white-space:nowrap}
 .button:hover {background:var(--well);border-color:#aabee1}
 .button .icon {width:15px;height:15px}
+.install-app {background:var(--active);border-color:var(--control);color:var(--accent-ink)}
+.install-app:hover {background:#fff0d4;border-color:var(--accent)}
 .launch,.quiet {background:transparent}
 .quiet {color:var(--muted);border-color:transparent}
 .sheet {background:var(--white);margin:0 8px 8px;border:1px solid var(--edge);border-radius:16px}
@@ -182,6 +184,7 @@ dialog button {justify-self:end}
   .output-actions {gap:3px;flex-wrap:wrap;justify-content:flex-end}
   .output-actions .button {font-size:12px;padding-inline:7px}
   .generate-top {font-size:12px;padding-inline:7px}
+  .install-app {font-size:12px;padding-inline:7px}
 }
 @media(max-width:700px) {
   .sheet {margin:0;border-radius:0;border-inline:0}
@@ -217,4 +220,6 @@ dialog button {justify-self:end}
   .top-actions {gap:4px}
   .language-switch button {min-width:30px;padding-inline:5px}
   .launch {font-size:12px;padding-inline:6px;gap:4px}
+  .install-app {width:34px;min-width:34px;padding-inline:0}
+  .install-app span {display:none}
 }
